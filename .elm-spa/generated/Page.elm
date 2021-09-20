@@ -16,7 +16,6 @@ import Auth exposing (User)
 import Effect exposing (Effect)
 import ElmSpa.Page as ElmSpa
 import Gen.Route exposing (Route)
-import Request exposing (Request)
 import Shared
 import View exposing (View)
 

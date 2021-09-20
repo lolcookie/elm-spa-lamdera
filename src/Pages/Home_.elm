@@ -1,8 +1,6 @@
 module Pages.Home_ exposing (Model, Msg(..), page)
 
 import Html exposing (..)
-import Html.Attributes exposing (class, classList)
-import Html.Events as Events
 import Page
 import Request exposing (Request)
 import Shared
@@ -28,7 +26,7 @@ type alias Model =
 
 
 init : Shared.Model -> ( Model, Cmd Msg )
-init shared =
+init _ =
     ( ()
     , Cmd.none
     )
@@ -43,7 +41,7 @@ type Msg
 
 
 update : Shared.Model -> Msg -> Model -> ( Model, Cmd Msg )
-update shared msg model =
+update _ msg model =
     case msg of
         Noop ->
             ( model
@@ -61,7 +59,7 @@ subscriptions _ =
 
 
 view : Shared.Model -> Model -> View Msg
-view shared model =
+view _ _ =
     { title = ""
     , body = [ text "Home" ]
     }

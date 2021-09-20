@@ -7,6 +7,7 @@ type alias Params =
     ()
 
 
+parser : Parser a a
 parser =
     (Parser.s "not-found")
 

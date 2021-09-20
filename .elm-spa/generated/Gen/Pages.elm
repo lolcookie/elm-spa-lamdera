@@ -1,19 +1,17 @@
-module Gen.Pages exposing (Model, Msg, init, subscriptions, update, view)
+module Gen.Pages exposing (Model, Msg, bundle, init, subscriptions, update, view)
 
 import Browser.Navigation exposing (Key)
 import Effect exposing (Effect)
 import ElmSpa.Page
-import Gen.Params.Home_
-import Gen.Params.NotFound
+import ElmSpa.Request
 import Gen.Model as Model
 import Gen.Msg as Msg
+import Gen.Params.Home_
+import Gen.Params.NotFound
 import Gen.Route as Route exposing (Route)
-import Page exposing (Page)
 import Pages.Home_
 import Pages.NotFound
-import Request exposing (Request)
 import Shared
-import Task
 import Url exposing (Url)
 import View exposing (View)
 
@@ -31,7 +29,7 @@ init route =
     case route of
         Route.Home_ ->
             pages.home_.init ()
-    
+
         Route.NotFound ->
             pages.notFound.init ()
 
@@ -51,10 +49,10 @@ view model_ =
     case model_ of
         Model.Redirecting_ ->
             \_ _ _ -> View.none
-    
+
         Model.Home_ params model ->
             pages.home_.view params model
-    
+
         Model.NotFound params ->
             pages.notFound.view params ()
 
@@ -64,10 +62,10 @@ subscriptions model_ =
     case model_ of
         Model.Redirecting_ ->
             \_ _ _ -> Sub.none
-    
+
         Model.Home_ params model ->
             pages.home_.subscriptions params model
-    
+
         Model.NotFound params ->
             pages.notFound.subscriptions params ()
 
@@ -90,6 +88,7 @@ type alias Bundle params model msg =
     ElmSpa.Page.Bundle params model msg Shared.Model (Effect Msg) Model Msg (View Msg)
 
 
+bundle : (shared -> ElmSpa.Request.Request Route params -> ElmSpa.Page.Page shared Route (Effect a) (View a) model a) -> (params -> model -> Model) -> (a -> b) -> ElmSpa.Page.Bundle params model a shared (Effect b) Model b (View b)
 bundle page toModel toMsg =
     ElmSpa.Page.bundle
         { redirecting =
@@ -118,4 +117,3 @@ static view_ toModel =
     , view = \_ _ _ _ _ -> View.map never view_
     , subscriptions = \_ _ _ _ _ -> Sub.none
     }
-    

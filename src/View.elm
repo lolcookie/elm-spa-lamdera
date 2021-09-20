@@ -28,5 +28,6 @@ map fn view =
     }
 
 
+toBrowserDocument : a -> a
 toBrowserDocument =
     identity

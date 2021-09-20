@@ -1,9 +1,9 @@
 module Types exposing (..)
 
-import Browser exposing (UrlRequest)
+import Browser
 import Browser.Navigation exposing (Key)
 import Gen.Pages as Pages
-import Shared exposing (Flags)
+import Shared
 import Url exposing (Url)
 
 

@@ -9,7 +9,7 @@ module Shared exposing
     )
 
 import Html exposing (..)
-import Html.Attributes exposing (class, href, rel)
+import Html.Attributes exposing (class)
 import Request exposing (Request)
 import View exposing (View)
 
@@ -27,7 +27,7 @@ type alias Model =
 
 
 init : Request -> Flags -> ( Model, Cmd Msg )
-init _ json =
+init _ _ =
     ( ()
     , Cmd.none
     )
@@ -64,7 +64,7 @@ view :
     -> { page : View msg, toMsg : Msg -> msg }
     -> Model
     -> View msg
-view req { page, toMsg } model =
+view _ { page } _ =
     { title =
         page.title
     , body =

@@ -20,6 +20,7 @@ type alias Model =
     FrontendModel
 
 
+app : { init : Url -> Key -> (Model, Cmd Msg), view : Model -> Browser.Document Msg, update : Msg -> Model -> (Model, Cmd Msg), updateFromBackend : ToFrontend -> Model -> (Model, Cmd Msg), subscriptions : Model -> Sub Msg, onUrlRequest : Browser.UrlRequest -> Msg, onUrlChange : Url -> Msg }
 app =
     Lamdera.frontend
         { init = init
@@ -57,6 +58,7 @@ init url key =
 -- UPDATE
 
 
+scrollPageToTop : Cmd FrontendMsg
 scrollPageToTop =
     Task.perform (\_ -> Noop) (Browser.Dom.setViewport 0 0)
 
