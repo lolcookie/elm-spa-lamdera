@@ -1,6 +1,6 @@
 module Pages.Home_ exposing (Model, Msg(..), page)
 
-import Html exposing (..)
+import Element exposing (..)
 import Page
 import Request exposing (Request)
 import Shared
@@ -61,5 +61,5 @@ subscriptions _ =
 view : Shared.Model -> Model -> View Msg
 view _ _ =
     { title = ""
-    , body = [ text "Home" ]
+    , body = text "Home"
     }
